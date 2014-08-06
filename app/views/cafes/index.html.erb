@@ -13,7 +13,7 @@
     <% @cafes.each do |cafe| %>
       <tr>
         <td><%= cafe.name %></td>
-        <td><%= cafe.address %></td>
+        <td><%= link_to cafe.address, "http://maps.google.com/?q=#{cafe.name}|#{cafe.address}", :target => "_blank" %></td>
         <td><%= cafe.tel %></td>
         <td><%= link_to 'Show', cafe %></td>
         <td><%= link_to 'Edit', edit_cafe_path(cafe) %></td>
