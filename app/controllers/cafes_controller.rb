@@ -32,7 +32,12 @@ class CafesController < ApplicationController
 
 
   def update
-    
+    @cafe = Cafe.find(params[:id])
+    if @cafe.update(cafe_params)
+      redirect_to cafes_path
+    else
+      render :edit
+    end
   end
 
 
