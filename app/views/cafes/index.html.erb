@@ -1,0 +1,28 @@
+<h1>Coding Cafe</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cafe</th>
+      <th>地址</th>
+      <th>電話</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cafes.each do |cafe| %>
+      <tr>
+        <td><%= cafe.name %></td>
+        <td><%= cafe.address %></td>
+        <td><%= cafe.tel %></td>
+        <td><%= link_to 'Show', cafe %></td>
+        <td><%= link_to 'Edit', edit_cafe_path %></td>
+        <td><%= link_to 'Delete', cafe, method: :delete, date: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add a cafe', new_cafe_path %>
