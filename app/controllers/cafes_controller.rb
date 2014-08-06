@@ -42,7 +42,9 @@ class CafesController < ApplicationController
 
 
   def destroy
-    
+    @cafe = Cafe.find(params[:id])
+    @cafe.destroy
+    redirect_to cafes_path
   end
 
 
