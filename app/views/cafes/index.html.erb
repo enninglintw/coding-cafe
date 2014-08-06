@@ -16,7 +16,7 @@
         <td><%= cafe.address %></td>
         <td><%= cafe.tel %></td>
         <td><%= link_to 'Show', cafe %></td>
-        <td><%= link_to 'Edit', edit_cafe_path %></td>
+        <td><%= link_to 'Edit', edit_cafe_path(cafe) %></td>
         <td><%= link_to 'Delete', cafe, method: :delete, date: {confirm: 'Are you sure?'} %></td>
       </tr>
     <% end %>
