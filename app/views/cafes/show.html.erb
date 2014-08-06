@@ -1,0 +1,17 @@
+<p>
+  <strong>店名：</strong>
+  <%= @cafe.name %>
+</p>
+
+<p>
+  <strong>地址：</strong>
+  <%= @cafe.address %>
+</p>
+
+<p>
+  <strong>電話：</strong>
+  <%= @cafe.tel %>
+</p>
+
+<%= link_to 'Edit', edit_cafe_path(@cafe) %>
+<%= link_to 'Back', cafes_path %>
