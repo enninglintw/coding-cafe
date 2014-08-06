@@ -7,7 +7,7 @@ class CafesController < ApplicationController
 
 
   def new
-    
+    @cafe = Cafe.new
   end
 
 
