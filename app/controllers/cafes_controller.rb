@@ -22,7 +22,12 @@ class CafesController < ApplicationController
 
 
   def create
-    
+    @cafe = Cafe.new(cafe_params)
+    if @cafe.save
+      redirect_to cafes_path
+    else
+      render :new
+    end
   end
 
 
@@ -35,5 +40,11 @@ class CafesController < ApplicationController
     
   end
 
+
+  private
+
+  def cafe_params
+    params.require(:cafe).permit(:name, :address, :tel)
+  end
 
 end
