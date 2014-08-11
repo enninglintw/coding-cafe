@@ -6,16 +6,30 @@
       <th>Cafe</th>
       <th>地址</th>
       <th>電話</th>
+      <th>星期一</th>
+      <th>星期二</th>
+      <th>星期三</th>
+      <th>星期四</th>
+      <th>星期五</th>
+      <th>星期六</th>
+      <th>星期日</th>
     </tr>
   </thead>
 
   <tbody>
     <% @cafes.each do |cafe| %>
       <tr>
-        <td><%= cafe.name %></td>
+        <td><%= link_to cafe.name, cafe %></td>
         <td><%= link_to cafe.address, "http://maps.google.com/?q=#{cafe.name}|#{cafe.address}", :target => "_blank" %></td>
         <td><%= cafe.tel %></td>
-        <td><%= link_to 'Show', cafe %></td>
+        <td><%= cafe.mon_open.to_s + " - " + cafe.mon_close.to_s %></td>
+        <td><%= cafe.tue_open.to_s + " - " + cafe.tue_close.to_s %></td>
+        <td><%= cafe.wed_open.to_s + " - " + cafe.wed_close.to_s %></td>
+        <td><%= cafe.thu_open.to_s + " - " + cafe.thu_close.to_s %></td>
+        <td><%= cafe.fri_open.to_s + " - " + cafe.fri_close.to_s %></td>
+        <td><%= cafe.sat_open.to_s + " - " + cafe.sat_close.to_s %></td>
+        <td><%= cafe.sun_open.to_s + " - " + cafe.sun_close.to_s %></td>
+
         <td><%= link_to 'Edit', edit_cafe_path(cafe) %></td>
         <td><%= link_to 'Delete', cafe, method: :delete, date: {confirm: 'Are you sure?'} %></td>
       </tr>
