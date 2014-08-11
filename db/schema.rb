@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806032119) do
+ActiveRecord::Schema.define(version: 20140811151052) do
 
   create_table "cafes", force: true do |t|
     t.string   "name"
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 20140806032119) do
     t.string   "tel"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.time     "mon_open"
+    t.time     "mon_close"
+    t.time     "tue_open"
+    t.time     "tue_close"
+    t.time     "wed_open"
+    t.time     "wed_close"
+    t.time     "thu_open"
+    t.time     "thu_close"
+    t.time     "fri_open"
+    t.time     "fri_close"
+    t.time     "sat_open"
+    t.time     "sat_close"
+    t.time     "sun_open"
+    t.time     "sun_close"
   end
 
 end
