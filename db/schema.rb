@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811151052) do
+ActiveRecord::Schema.define(version: 20140830060250) do
 
   create_table "cafes", force: true do |t|
     t.string   "name"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20140811151052) do
     t.time     "sat_close"
     t.time     "sun_open"
     t.time     "sun_close"
+    t.boolean  "mon_holiday"
+    t.boolean  "tue_holiday"
+    t.boolean  "wed_holiday"
+    t.boolean  "thu_holiday"
+    t.boolean  "fri_holiday"
+    t.boolean  "sat_holiday"
+    t.boolean  "sun_holiday"
   end
 
 end

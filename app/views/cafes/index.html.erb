@@ -4,9 +4,10 @@
 <table>
   <thead>
     <tr>
-      <th colspan="2" rowspan="2">Cafe</th>
-      <th rowspan="2">地址</th>
-      <th rowspan="2">電話</th>
+      <th></th>
+      <th>Cafe</th>
+      <th>地址</th>
+      <th>電話</th>
       <th colspan="3">星期一</th>
       <th colspan="3">星期二</th>
       <th colspan="3">星期三</th>
@@ -14,125 +15,39 @@
       <th colspan="3">星期五</th>
       <th colspan="3">星期六</th>
       <th colspan="3">星期日</th>
-      <th rowspan="2">更新日期</th>
-    </tr>
-    <tr>
-      <th>開店</th>
-      <th></th>
-      <th>閉店</th>
-      <th>開店</th>
-      <th></th>
-      <th>閉店</th>
-      <th>開店</th>
-      <th></th>
-      <th>閉店</th>
-      <th>開店</th>
-      <th></th>
-      <th>閉店</th>
-      <th>開店</th>
-      <th></th>
-      <th>閉店</th>
-      <th>開店</th>
-      <th></th>
-      <th>閉店</th>
-      <th>開店</th>
-      <th></th>
-      <th>閉店</th>
+      <th>更新日期</th>
     </tr>
   </thead>
 
   <tbody>
     <% @cafes.each do |cafe| %>
       <tr>
-        <td><%= link_to cafe.name, cafe %></td>
         <td><%= link_to "Edit", edit_cafe_path(cafe) %></td>
+        <td><%= link_to cafe.name, cafe %></td>
         <td><%= link_to cafe.address, "http://maps.google.com/?q=#{cafe.name}|#{cafe.address}", :target => "_blank" %></td>
         <td><%= cafe.tel %></td>
 
-        <td><% if cafe.mon_open == nil %>
+      <% @days.each do |day| %>
+        <% if cafe.send("#{day}_holiday") %>
+          <td colspan="3"> 公休日 </td>
+        <% else %>
+          <td>
+            <% if cafe.send("#{day}_open") == nil %>
               <%= "?" %>
             <% else %>
-              <%= l cafe.mon_open %>
-            <% end %></td>
-        <td>-</td>
-        <td><% if cafe.mon_close == nil %>
+              <%= l cafe.send("#{day}_open") %>
+            <% end %>
+          </td>
+          <td> - </td>
+          <td>
+            <% if cafe.send("#{day}_close") == nil %>
               <%= "?" %>
             <% else %>
-              <%= l cafe.mon_close %>
-            <% end %></td>
-
-        <td><% if cafe.tue_open == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.tue_open %>
-            <% end %></td>
-        <td>-</td>
-        <td><% if cafe.tue_close == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.tue_close %>
-            <% end %></td>
-        
-        <td><% if cafe.wed_open == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.wed_open %>
-            <% end %></td>
-        <td>-</td>
-        <td><% if cafe.wed_close == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.wed_close %>
-            <% end %></td>
-
-        <td><% if cafe.thu_open == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.thu_open %>
-            <% end %></td>
-        <td>-</td>
-        <td><% if cafe.thu_close == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.thu_close %>
-            <% end %></td>
-
-        <td><% if cafe.fri_open == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.fri_open %>
-            <% end %></td>
-        <td>-</td>
-        <td><% if cafe.fri_close == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.fri_close %>
-            <% end %></td>
-
-        <td><% if cafe.sat_open == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.sat_open %>
-            <% end %></td>
-        <td>-</td>
-        <td><% if cafe.sat_close == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.sat_close %>
-            <% end %></td>
-
-        <td><% if cafe.sun_open == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.sun_open %>
-            <% end %></td>
-        <td>-</td>
-        <td><% if cafe.sun_close == nil %>
-              <%= "?" %>
-            <% else %>
-              <%= l cafe.sun_close %>
-            <% end %></td>
-
+              <%= l cafe.send("#{day}_close") %>
+            <% end %>
+          </td>
+        <% end %>
+      <% end %>
 
         <td><%= l cafe.updated_at, format: :date %></td>
 

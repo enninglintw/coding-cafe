@@ -55,3 +55,6 @@ gem 'spring',        group: :development
 
 # login/logout function
 gem 'devise'
+
+# for sortable table
+gem 'ransack'

@@ -1,0 +1,143 @@
+Website main concept:
+  My coding cafe list.
+  Able to find a coding cafe with high rank.
+  Able to find a cafe filtered by a period of time.
+
+cafe info from:
+  ☐ searched from google & internet
+  ☐ provided by shop owner
+  ☐ fetch data from google map
+
+REMEMBER:
+  People DO NOT like to remember another set of account and password.
+
+ ☐ guest (login not required) (cafe: index, show, new/create, edit/update)
+     ☐ [edit/update]
+         ✔ opening hours: @done (14-08-13 15:56)
+             ✔ key in opening time, and closing time @done (14-08-13 15:56)
+
+     ☐ [index, show]
+         ✔ link to google map @done (14-08-06 00:06)
+         ☐ show google map when hovering cafe address.
+         ☐ show distance from a key-in address (Can address be cached too?)
+             ☐ gem Geocoder / Geokit / Gmaps4rails
+
+         ☐ mark cafes as my favorite (if use cache, then login is not nesessary.)
+
+         ☐ search cafe with name, address and so on.
+
+         ☐ sort cafes by name, min_charge and so on.
+
+         ☐ filter cafes by a period of time.
+         ☐ filter cafes by keywords
+
+         ☐ show rating items and further info when hovering
+
+         ☐ make phone calls by clicking phone number through skype
+         ☐ show opening hours in calendar form
+     
+     ☐ [report] 
+         ☐ mistake report
+             resources :cafes do
+                 member do
+                     post 'report'
+                 end
+             end
+
+
+ ☐ db
+   ✔ name, string @done (14-08-06 02:19)
+   ✔ address, text @done (14-08-06 02:19)
+   ✔ tel, string @done (14-08-05 22:52)
+   
+   ☐ cafe_rating
+
+   ☐ min_charge, integer/string?
+   ☐ min_charge_info, text
+   ☐ min_charge_rating, ?
+   
+   ☐ wifi, boolean
+   ☐ wifi_info, text
+   ☐ wifi_rating, ?
+   
+   ☐ outlet, boolean
+   ☐ outlet_info, text
+   ☐ outlet_rating, ?
+   
+   ☐ lighting, string/text?
+   ☐ lighting_info, text
+   ☐ lighting_rating
+     
+   ☐ seats, integer/string?
+   ☐ seats_info, text
+   ☐ seats_rating, ?
+
+   ☐ opening hours
+       ☐ mon_open
+       ☐ mon_close
+       ☐ tue_open
+       ☐ tue_close
+       ☐ wed_open
+       ☐ wed_close
+       ☐ thu_open
+       ☐ thu_close
+       ☐ fri_open
+       ☐ fri_close
+       ☐ sat_open
+       ☐ sat_close
+       ☐ sun_open
+       ☐ sun_close
+
+   ☐ opening hours in another model?
+
+                  open     close     holiday
+       Mon     time      time      boolean
+       Tue
+       Wed
+       Thu
+       Fri
+       Sat
+       Sun
+
+       ☐ <% @days.each do |day| %>
+               <tr>
+                   <td>
+                       <% if day.holiday %>
+                           <%= "公休日" %>
+                       <% elsif day.open != nil && day.close != nil %>
+                           <%= l day.open %> - <%= l day.close %>
+                       <% elsif day.open == nil %>
+                           ? - <%= l day.close %>
+                       <% elsif day.close == nil %>
+                           <%= l day.open %> - ?
+                       <% else %>
+                           ? - ?
+                       <% end %>
+                   </td>
+
+       or
+
+       ☐<% @days.each do |day| %>
+              <% if day.holiday == true %>
+                  <td colspan="3'"><%= "公休日" %></td>
+              <% else %>
+                  <td><% if day.open == nil %>
+                            <%= "?" %>
+                          <% else %>
+                            <%= l day.open %>
+                          <% end %></td>
+                  <td>-</td>
+                  <td><% if day.close == nil %>
+                            <%= "?" %>
+                          <% else %>
+                            <%= l day.close %>
+                          <% end %></td>
+              <% end %>
+
+   ☐ notes
+   
+   ☐ visited? 是否去過？
+   ☐ bookable? 可否訂位？
+   ☐ smoke? 是否禁煙？
+   ☐ food
+   ☐ drinks
